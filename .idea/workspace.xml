@@ -64,14 +64,26 @@
       <option name="presentableId" value="Default" />
       <updated>1700928253123</updated>
     </task>
+    <task id="LOCAL-00001" summary="1) Форма ввода информации&#10;2) Генератор ID">
+      <created>1701367073178</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1701367073178</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="1) Форма ввода информации&#10;2) Генератор ID" />
+    <option name="LAST_COMMIT_MESSAGE" value="1) Форма ввода информации&#10;2) Генератор ID" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/main.py</url>
-          <line>45</line>
+          <line>49</line>
           <option name="timeStamp" value="1" />
         </line-breakpoint>
       </breakpoints>
