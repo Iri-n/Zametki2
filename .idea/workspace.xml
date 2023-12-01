@@ -25,13 +25,13 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "last_opened_file_path": "D:/Учеба Иришка гикбрейнс 2021-2022/Python/Zametki2"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;D:/Учеба Иришка гикбрейнс 2021-2022/Python/Zametki2&quot;
   }
-}]]></component>
+}</component>
   <component name="RunManager">
     <configuration name="main" type="PythonConfigurationType" factoryName="Python" nameIsGenerated="true">
       <module name="Zametki2" />
@@ -78,20 +78,36 @@
       <option name="project" value="LOCAL" />
       <updated>1701368883411</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="1) Json и кнопки на форме">
+      <created>1701370973707</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1701370973707</updated>
+    </task>
+    <task id="LOCAL-00004" summary="Добавила файл Json">
+      <created>1701371051315</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1701371051315</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="1) Форма ввода информации&#10;2) Генератор ID" />
     <MESSAGE value="1) Дата&#10;2) Форма для списка заметок(Дерево)" />
-    <option name="LAST_COMMIT_MESSAGE" value="1) Дата&#10;2) Форма для списка заметок(Дерево)" />
+    <MESSAGE value="1) Json и кнопки на форме" />
+    <MESSAGE value="Добавила файл Json" />
+    <option name="LAST_COMMIT_MESSAGE" value="Добавила файл Json" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/main.py</url>
-          <line>135</line>
+          <line>286</line>
           <option name="timeStamp" value="1" />
         </line-breakpoint>
       </breakpoints>

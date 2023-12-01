@@ -102,7 +102,158 @@ def load_trv_with_json():
                    values=(n_id_value, name, date, note))
         rowIndex = rowIndex + 1
 
+def clear_all_fields():
+    crm_name.delete(0, END)
+    crm_date.delete(0, END)
+    crm_note.delete(0, END)
+    crm_id.configure(text="")
+    crm_name.focus_set()
+    id_value.set(uuid.uuid4())
+    change_background_color("#FFFFFF")
 
+
+
+def find_row_in_my_data_list(n_id_value):
+    global my_data_list
+    row = 0
+    found = False
+
+    for rec in my_data_list:
+        if rec["id"] == n_id_value:
+            found = True
+            break
+        row = row + 1
+
+    if (found == True):
+        return (row)
+
+    return (-1)
+
+
+
+def change_background_color(new_color):
+    crm_name.config(bg=new_color)
+    crm_date.config(bg=new_color)
+    crm_note.config(bg=new_color)
+
+
+
+def change_enabled_state(state):
+    if state == 'Edit':
+        btnUpdate["state"] = "normal"
+        btnDelete["state"] = "normal"
+        btnAdd["state"] = "disabled"
+    elif state == 'Cancel':
+        btnUpdate["state"] = "disabled"
+        btnDelete["state"] = "disabled"
+        btnAdd["state"] = "disabled"
+    else:
+        btnUpdate["state"] = "disabled"
+        btnDelete["state"] = "disabled"
+        btnAdd["state"] = "normal"
+
+
+
+def load_edit_field_with_row_data(_tuple):
+    if len(_tuple) == 0:
+        return;
+
+    id_value.set(_tuple[0]);
+    crm_name.delete(0, END)
+    crm_name.insert(0, _tuple[1])
+    crm_date.delete(0, END)
+    crm_date.insert(0, _tuple[2])
+    crm_note.delete(0, END)
+    crm_note.insert(0, _tuple[3])
+
+
+
+def cancel():
+    clear_all_fields()
+    change_enabled_state('New')
+
+
+
+def print_all_entries():
+    global my_data_list
+
+    for rec in my_data_list:
+        print(rec)
+
+    crm_name.focus_set();
+
+
+
+def add_entry():
+    n_id_value = id_value.get()
+    name = crm_name.get()
+    date = crm_date.get()
+    text = crm_note.get()
+
+    if len(name) == 0:
+        change_background_color("#FFB2AE")
+        return
+
+    process_request('_INSERT_', n_id_value, name, date, text)
+
+
+
+def update_entry():
+    n_id_value = id_value.get()
+    name = crm_name.get()
+    date = crm_date.get()
+    note = crm_note.get()
+
+    if len(name) == 0:
+        change_background_color("#FFB2AE")
+        return
+
+    process_request('_UPDATE_', n_id_value, name, date, note)
+
+
+
+def delete_entry():
+    n_id_value = id_value.get()
+    process_request('_DELETE_', n_id_value, None, None, None)
+
+
+
+def process_request(command_type, n_id_value, name, date, note):
+    global my_data_list
+
+    if command_type == "_UPDATE_":
+        row = find_row_in_my_data_list(n_id_value)
+        if row >= 0:
+            dict = {"id": n_id_value, "name": name,
+                    "date": date, "note": note}
+            my_data_list[row] = dict
+
+    elif command_type == "_INSERT_":
+        dict = {"id": n_id_value, "name": name,
+                "date": date, "note": note}
+        my_data_list.append(dict)
+
+    elif command_type == "_DELETE_":
+        row = find_row_in_my_data_list(n_id_value)
+        if row >= 0:
+            del my_data_list[row];
+
+    save_json_to_file();
+    load_trv_with_json();
+    clear_all_fields();
+
+
+
+def MouseButtonUpCallBack(event):
+    currentRowIndex = trv.selection()[0]
+    lastTuple = (trv.item(currentRowIndex, 'values'))
+    load_edit_field_with_row_data(lastTuple)
+
+    change_enabled_state('Edit')
+
+
+
+trv.bind("<ButtonRelease>", MouseButtonUpCallBack)
 
 
 
@@ -110,22 +261,22 @@ ButtonFrame = LabelFrame(root, text='', bg="lightgray", font=('Consolas', 14))
 ButtonFrame.grid(row=5, column=0, columnspan=6)
 
 
-btnShow = Button(ButtonFrame, text="Print", padx=20, pady=10)
+btnShow = Button(ButtonFrame, text="Print", padx=20, pady=10, command=print_all_entries)
 btnShow.pack(side=LEFT)
 
-btnAdd = Button(ButtonFrame, text="Add", padx=20, pady=10)
+btnAdd = Button(ButtonFrame, text="Add", padx=20, pady=10, command=add_entry)
 btnAdd.pack(side=LEFT)
 
-btnUpdate = Button(ButtonFrame, text="Update", padx=20, pady=10)
+btnUpdate = Button(ButtonFrame, text="Update", padx=20, pady=10, command=update_entry)
 btnUpdate.pack(side=LEFT)
 
-btnDelete = Button(ButtonFrame, text="Delete", padx=20, pady=10)
+btnDelete = Button(ButtonFrame, text="Delete", padx=20, pady=10, command=delete_entry)
 btnDelete.pack(side=LEFT)
 
-btnClear = Button(ButtonFrame, text="Cancel", padx=18, pady=10)
+btnClear = Button(ButtonFrame, text="Cancel", padx=18, pady=10, command=cancel)
 btnClear.pack(side=LEFT)
 
-btnExit = Button(ButtonFrame, text="Exit", padx=20, pady=10)
+btnExit = Button(ButtonFrame, text="Exit", padx=20, pady=10, command=root.quit)
 btnExit.pack(side=LEFT)
 
 
